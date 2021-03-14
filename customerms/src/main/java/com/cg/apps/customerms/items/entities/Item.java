@@ -4,12 +4,25 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.cg.apps.customerms.customer.entities.Customer;
 @Entity
 public class Item {
 	@Id
 	private String id;
 	double price;
 	String description;
+	@ManyToOne
+	Customer boughtBy;
+	public Customer getBoughtBy() {
+		return boughtBy;
+	}
+
+	public void setBoughtBy(Customer boughtBy) {
+		this.boughtBy = boughtBy;
+	}
+
 	public Item() {
 		
 	}

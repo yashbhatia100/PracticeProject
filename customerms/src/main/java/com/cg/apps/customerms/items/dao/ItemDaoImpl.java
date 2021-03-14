@@ -33,7 +33,7 @@ public class ItemDaoImpl implements IItemDao {
 	public Item update(Item item) {
 		
 		
-		return null;
+		return entityManager.merge(item);
 	}
 
 	@Override

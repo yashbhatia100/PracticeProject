@@ -1,4 +1,4 @@
-package com.cg.apps.customerms.items.ui;
+/*package com.cg.apps.customerms.items.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,3 +33,4 @@ public class ItemUi {
 	
 
 }
+*/

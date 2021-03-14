@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.cg.apps.customerms.items.ui.ItemUi;
+//import com.cg.apps.customerms.items.ui.ItemUi;
 import com.cg.apps.customerms.ui.CustomerUi;
 
 
@@ -15,8 +15,8 @@ public class CustomermsApplication {
 	ConfigurableApplicationContext context=	SpringApplication.run(CustomermsApplication.class, args);
 	CustomerUi customerUi=context.getBean(CustomerUi.class);
 	customerUi.start();
-	ItemUi itemUi=context.getBean(ItemUi.class);
-	itemUi.start();
+	//ItemUi itemUi=context.getBean(ItemUi.class);
+	//itemUi.start();
 		
 	}
 

@@ -3,6 +3,7 @@ package com.cg.apps.customerms.customer.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -24,11 +25,12 @@ public class CustomerDaoImpl implements ICustomerDao {
 	Customer customer=entityManger.find(Customer.class, customerId);
 	return customer;
 	}
-
+@Transactional
 	@Override
 	public Customer update(Customer customer) {
 		
-		return null;
+	return	entityManger.merge(customer);
+
 		
 	}
 
