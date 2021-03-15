@@ -15,7 +15,6 @@ import com.cg.apps.customerms.items.entities.Item;
 import com.cg.apps.customerms.items.service.IItemService;
 import com.cg.apps.customerms.items.util.ItemUtil;
 
-
 @RequestMapping("/items")
 @RestController
 public class ItemController {
@@ -27,18 +26,16 @@ public class ItemController {
 	private ItemUtil util;
 
 	@GetMapping("/findbyid/{Itemid}")
-	public ItemDetail findById(@PathVariable String Itemid)
-	{
+	public ItemDetail findById(@PathVariable String Itemid) {
 		Item item = service.findByID(Itemid);
-		ItemDetail details=util.toDetail(item);
+		ItemDetail details = util.toDetail(item);
 		return details;
 	}
 
 	@PutMapping("/buyItem")
-	public ItemDetail buyItem(@RequestBody ItemsBuyRequest request)
-	{
-		Item item=service.buyItem(request.getItemId(),request.getCustId());
-		ItemDetail details=util.toDetail(item);
+	public ItemDetail buyItem(@RequestBody ItemsBuyRequest request) {
+		Item item = service.buyItem(request.getItemId(), request.getCustId());
+		ItemDetail details = util.toDetail(item);
 		return details;
 	}
 

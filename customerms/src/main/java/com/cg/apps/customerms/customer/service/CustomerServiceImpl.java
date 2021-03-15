@@ -11,58 +11,62 @@ import org.springframework.stereotype.Service;
 import com.cg.apps.customerms.customer.dao.*;
 import com.cg.apps.customerms.customer.entities.Account;
 import com.cg.apps.customerms.customer.entities.Customer;
+import com.cg.apps.customerms.customer.exceptions.CustomerNotFoundException;
 import com.cg.apps.customerms.items.entities.Item;
+
 @Service
-public class CustomerServiceImpl implements ICustomerService{
+public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
-	private ICustomerDao dao;
+	private ICustomerRepository crepository;
 	@Autowired
-	private EntityManager entityManger;
-	
-	
+	private IAccountRepository arepository;
+
 	@Transactional
 	@Override
 	public Customer createCustomer(String name) {
-		
-		
-		LocalDateTime currentTime= LocalDateTime.now();
-		Account account1=new Account(40000, currentTime);
-		
-		entityManger.persist(account1);
-		Customer customer=new Customer(name,account1);
-		
-		dao.add(customer);
+
+		LocalDateTime currentTime = LocalDateTime.now();
+		Account account = new Account(40000, currentTime);
+
+		arepository.save(account);
+		Customer customer = new Customer(name, account);
+
+		customer = crepository.save(customer);
 		return customer;
-		
+
 	}
-	
 
 	@Override
 	public Customer findById(Long customerId) {
-		Customer customer=dao.findById(customerId);
-		return customer;
-		
+		Optional<Customer> optional = crepository.findById(customerId);
+		if (!optional.isPresent()) {
+			throw new CustomerNotFoundException("Student not Found for this id");
+		}
+
+		return optional.get();
 	}
-	
 
 	@Transactional
 	@Override
 	public Customer addAmount(Long customerId, double amount) {
-		
-		Customer customer=findById(customerId);
-		Account account=customer.getAccount();
+
+		Customer customer = findById(customerId);
+		Account account = customer.getAccount();
 		account.setBalance(amount);
-		entityManger.merge(account);
-		dao.update(customer);
+		arepository.save(account);
+		crepository.save(customer);
 		return customer;
 	}
 
-
 	@Override
 	public Set<Item> itemsBoughtByCustomer(Long customerID) {
-		Customer customer=findById(customerID);
-		Set<Item> items=customer.getBoughtItems();	
+		Optional<Customer> customer = crepository.findById(customerID);
+		if (!customer.isPresent()) {
+			throw new CustomerNotFoundException("Customer is not present with this id");
+		}
+		Customer cust = customer.get();
+		Set<Item> items = cust.getBoughtItems();
 		return items;
 	}
-	
+
 }

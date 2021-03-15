@@ -8,7 +8,7 @@ import com.cg.apps.customerms.customer.entities.Customer;
 @Component
 public class CustomerUtil {
 	public CustomerDetail toDetail(Customer customer) {
-		CustomerDetail custdetail=new CustomerDetail();
+		CustomerDetail custdetail = new CustomerDetail();
 		custdetail.setId(customer.getId());
 		custdetail.setName(customer.getName());
 		custdetail.setAccountid(customer.getId());

@@ -7,8 +7,11 @@ import com.cg.apps.customerms.customer.entities.*;
 
 public interface ICustomerService {
 	Customer findById(Long customerId);
+
 	Set<Item> itemsBoughtByCustomer(Long customerID);
+
 	Customer createCustomer(String name);
-	Customer addAmount(Long customerId,double amount);
+
+	Customer addAmount(Long customerId, double amount);
 
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 @Entity
 public class Account {
 	@GeneratedValue
@@ -12,9 +13,9 @@ public class Account {
 	private long accountId;
 	private double balance;
 	private LocalDateTime created;
-	
+
 	public Account() {
-		
+
 	}
 
 	public Account(double balance, LocalDateTime created) {

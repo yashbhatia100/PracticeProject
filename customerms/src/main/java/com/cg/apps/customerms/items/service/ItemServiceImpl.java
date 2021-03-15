@@ -9,43 +9,61 @@ import org.springframework.stereotype.Service;
 
 import com.cg.apps.customerms.customer.entities.Customer;
 import com.cg.apps.customerms.customer.dao.*;
-import com.cg.apps.customerms.items.dao.ItemDaoImpl;
 import com.cg.apps.customerms.items.entities.*;
 
 @Service
 public class ItemServiceImpl implements IItemService {
 
+	
+	public String generateString() {
+		String str="Item";
+		StringBuilder builder = new StringBuilder();
+		for(int i=0;i<3;i++) {
+		Random random=new Random();
+		int generateid=random.nextInt(9);
+		builder.append(generateid);
+		}
+		String itemid=builder.toString();
+		return str+itemid;
+		
+	}
+	
 	@Autowired
-	private ItemDaoImpl dao;
+	private IItemRepository irepository;
 	@Autowired
-	private CustomerDaoImpl cdao;
+	private ICustomerRepository crepository;
 
-	@Transactional
+	@Transactional 
 	@Override
 	public Item create(Double price, String description) {
 
 		Item item = new Item(price, description);
 		LocalDateTime addedTime = LocalDateTime.now();
 		item.setAddedDate(addedTime);
-		return dao.add(item);
+		
+		String id=generateString();
+		item.setId(id);
+		return irepository.save(item);
 
 	}
 
 	@Override
 	public Item findByID(String itemID) {
-		Item item = dao.findByID(itemID);
-		return item;
+		Optional<Item> item = irepository.findById(itemID);
+		return item.get();
 	}
 
 	@Transactional
 	@Override
 	public Item buyItem(String itemID, Long customerId) {
-		Customer customer = cdao.findById(customerId);
+		Optional<Customer> customer = crepository.findById(customerId);
 		Item item = findByID(itemID);
-		item.setBoughtBy(customer);
 		
-		dao.update(item);
-		cdao.update(customer);
+		
+		item.setBoughtBy(customer.get());
+		
+		irepository.save(item);
+		crepository.save(customer.get());
 
 		return item;
 	}

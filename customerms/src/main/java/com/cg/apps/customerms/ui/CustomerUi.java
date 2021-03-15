@@ -52,9 +52,6 @@ public class CustomerUi {
 
 		Customer addCust1 = service.addAmount(cust1.getId(), 4000);
 		Customer addCust2 = service.addAmount(cust2.getId(), 4000);
-		
-		System.out.println("Item 1 id is "+item1.getId());
 
 	}
-
 }

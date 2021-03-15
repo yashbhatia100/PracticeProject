@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.cg.apps.customerms.customer.entities.Customer;
+
 @Entity
 public class Item {
 	@Id
@@ -15,6 +16,7 @@ public class Item {
 	String description;
 	@ManyToOne
 	Customer boughtBy;
+
 	public Customer getBoughtBy() {
 		return boughtBy;
 	}
@@ -24,7 +26,7 @@ public class Item {
 	}
 
 	public Item() {
-		
+
 	}
 
 	public Item(double price, String description) {
@@ -33,7 +35,6 @@ public class Item {
 		this.description = description;
 	}
 
-	
 	LocalDateTime addedDate;
 
 	public String getId() {
@@ -60,7 +61,6 @@ public class Item {
 		this.description = description;
 	}
 
-	
 	public LocalDateTime getAddedDate() {
 		return addedDate;
 	}

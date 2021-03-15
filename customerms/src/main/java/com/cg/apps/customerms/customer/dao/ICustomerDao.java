@@ -1,4 +1,4 @@
-package com.cg.apps.customerms.customer.dao;
+/*package com.cg.apps.customerms.customer.dao;
 
 import com.cg.apps.customerms.customer.entities.*;
 
@@ -9,3 +9,4 @@ public interface ICustomerDao {
 	
 
 }
+*/

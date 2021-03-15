@@ -1,4 +1,4 @@
-package com.cg.apps.customerms.customer.dao;
+/*package com.cg.apps.customerms.customer.dao;
 
 
 import javax.persistence.EntityManager;
@@ -35,3 +35,4 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 
 }
+*/
