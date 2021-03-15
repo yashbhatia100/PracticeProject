@@ -12,7 +12,6 @@ import com.cg.apps.customerms.customer.dao.*;
 import com.cg.apps.customerms.items.dao.ItemDaoImpl;
 import com.cg.apps.customerms.items.entities.*;
 
-
 @Service
 public class ItemServiceImpl implements IItemService {
 
@@ -38,22 +37,17 @@ public class ItemServiceImpl implements IItemService {
 		return item;
 	}
 
+	@Transactional
 	@Override
 	public Item buyItem(String itemID, Long customerId) {
-		Customer customer=cdao.findById(customerId);
-		Item item=findByID(itemID);
+		Customer customer = cdao.findById(customerId);
+		Item item = findByID(itemID);
 		item.setBoughtBy(customer);
-		Set<Item> Items=customer.getBoughtItems();
-		if(Items==null) {
-			Items=new HashSet<>();
-			customer.setBoughtItems(Items);
-			
-		}
-		Items.add(item);
-		cdao.update(customer);
 		
+		dao.update(item);
+		cdao.update(customer);
 
-		return null;
+		return item;
 	}
 
 }

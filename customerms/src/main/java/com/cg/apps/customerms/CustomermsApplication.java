@@ -15,8 +15,7 @@ public class CustomermsApplication {
 	ConfigurableApplicationContext context=	SpringApplication.run(CustomermsApplication.class, args);
 	CustomerUi customerUi=context.getBean(CustomerUi.class);
 	customerUi.start();
-	//ItemUi itemUi=context.getBean(ItemUi.class);
-	//itemUi.start();
+	
 		
 	}
 

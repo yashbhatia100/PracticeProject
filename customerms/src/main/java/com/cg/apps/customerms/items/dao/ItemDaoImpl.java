@@ -1,5 +1,7 @@
 package com.cg.apps.customerms.items.dao;
 
+import java.util.Random;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -13,10 +15,19 @@ public class ItemDaoImpl implements IItemDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	 
+	
 	public String generateString() {
 		String str="Item";
-		str=str+Math.random();
-		return str;
+		StringBuilder builder = new StringBuilder();
+		for(int i=0;i<3;i++) {
+		Random random=new Random();
+		int generateid=random.nextInt(9);
+		builder.append(generateid);
+		}
+		String itemid=builder.toString();
+		return str+itemid;
+		
 	}
 	
 @Transactional
