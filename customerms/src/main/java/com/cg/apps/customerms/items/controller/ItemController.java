@@ -34,10 +34,12 @@ public class ItemController {
 		return details;
 	}
 
-	@PutMapping("/customer/add")
+	@PutMapping("/buyItem")
 	public ItemDetail buyItem(@RequestBody ItemsBuyRequest request)
 	{
-		return util.toDetail(service.buyItem(request.getItemId(),request.getCustId()));
+		Item item=service.buyItem(request.getItemId(),request.getCustId());
+		ItemDetail details=util.toDetail(item);
+		return details;
 	}
 
 }
